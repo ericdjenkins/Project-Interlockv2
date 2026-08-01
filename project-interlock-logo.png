@@ -1,0 +1,353 @@
+const programs = [
+  {
+    number: "01",
+    title: "AI & STEM Education",
+    description:
+      "Hands-on learning in artificial intelligence, coding, robotics, data, and emerging technology—built to turn curiosity into capability.",
+    tag: "Learn",
+  },
+  {
+    number: "02",
+    title: "Scholarship Access",
+    description:
+      "Guidance, resources, and funding pathways that help students pursue college, certifications, and technical training with confidence.",
+    tag: "Fund",
+  },
+  {
+    number: "03",
+    title: "Mentorship",
+    description:
+      "Sustained relationships with Black professionals, educators, and industry leaders who make ambitious futures feel visible and reachable.",
+    tag: "Grow",
+  },
+  {
+    number: "04",
+    title: "Internships",
+    description:
+      "Real-world experiences that build technical fluency, professional networks, and the practical confidence employers value.",
+    tag: "Experience",
+  },
+  {
+    number: "05",
+    title: "Career Launch",
+    description:
+      "Career preparation, employer connections, and job pathways that help emerging talent move from opportunity to lasting impact.",
+    tag: "Lead",
+  },
+];
+
+const pathways = [
+  {
+    step: "Discover",
+    title: "See what’s possible",
+    copy: "Explore AI and STEM through welcoming, culturally responsive experiences.",
+  },
+  {
+    step: "Build",
+    title: "Create with technology",
+    copy: "Develop practical skills through projects, coaching, and collaborative learning.",
+  },
+  {
+    step: "Connect",
+    title: "Grow your network",
+    copy: "Meet mentors, peers, colleges, and employers who invest in your potential.",
+  },
+  {
+    step: "Launch",
+    title: "Step into opportunity",
+    copy: "Access scholarships, internships, credentials, and career pathways.",
+  },
+];
+
+const involvement = [
+  {
+    eyebrow: "For students",
+    title: "Find your pathway",
+    copy: "Build AI-ready skills, connect with mentors, and discover education and career opportunities designed to move you forward.",
+    cta: "Join the interest list",
+    href: "mailto:info@projectinterlock.org?subject=Student%20Interest%20-%20Project%20Interlock",
+  },
+  {
+    eyebrow: "For professionals",
+    title: "Open a door",
+    copy: "Share your experience as a mentor, speaker, coach, or career connector—and help talent see a future that includes them.",
+    cta: "Become a mentor",
+    href: "mailto:info@projectinterlock.org?subject=Mentor%20Interest%20-%20Project%20Interlock",
+  },
+  {
+    eyebrow: "For organizations",
+    title: "Build the bridge",
+    copy: "Partner with us to fund learning, sponsor scholarships, host interns, or create direct routes into the technology workforce.",
+    cta: "Explore partnership",
+    href: "mailto:info@projectinterlock.org?subject=Partnership%20Interest%20-%20Project%20Interlock",
+  },
+];
+
+export default function Home() {
+  return (
+    <main>
+      <header className="siteHeader">
+        <a className="brand" href="#top" aria-label="Project Interlock home">
+          <img
+            src="/assets/project-interlock-logo.png"
+            alt="Project Interlock — AI Education and Pathways"
+          />
+        </a>
+
+        <nav className="desktopNav" aria-label="Primary navigation">
+          <a href="#mission">About</a>
+          <a href="#programs">Programs</a>
+          <a href="#pathway">Pathways</a>
+          <a href="#get-involved">Get involved</a>
+        </nav>
+
+        <a className="button buttonSmall buttonGold desktopCta" href="#get-involved">
+          Connect with us <span aria-hidden="true">↗</span>
+        </a>
+
+        <details className="mobileMenu">
+          <summary aria-label="Open navigation">
+            <span />
+            <span />
+            <span />
+          </summary>
+          <nav aria-label="Mobile navigation">
+            <a href="#mission">About</a>
+            <a href="#programs">Programs</a>
+            <a href="#pathway">Pathways</a>
+            <a href="#get-involved">Get involved</a>
+          </nav>
+        </details>
+      </header>
+
+      <section className="hero" id="top">
+        <img
+          className="heroImage"
+          src="/assets/project-interlock-hero.png"
+          alt="Black students collaborating with technology in a learning lab"
+        />
+        <div className="heroShade" />
+        <div className="network networkOne" aria-hidden="true" />
+        <div className="network networkTwo" aria-hidden="true" />
+
+        <div className="heroContent">
+          <p className="kicker">
+            Connecting talent <span>•</span> technology <span>•</span> opportunity
+          </p>
+          <h1>
+            Talent is everywhere.
+            <span>Opportunity should be too.</span>
+          </h1>
+          <p className="heroLead">
+            Project Interlock equips African American students to learn,
+            create, and lead in an AI-powered world—connecting education,
+            scholarships, mentors, internships, and careers in one pathway.
+          </p>
+          <div className="heroActions">
+            <a className="button buttonGold" href="#programs">
+              Explore our pathways <span aria-hidden="true">→</span>
+            </a>
+            <a className="textLink" href="#mission">
+              Why Project Interlock <span aria-hidden="true">↓</span>
+            </a>
+          </div>
+        </div>
+
+        <div className="heroSignal" aria-label="Project Interlock model">
+          <span className="signalLabel">One connected ecosystem</span>
+          <div className="signalItems">
+            <span>Learn</span>
+            <i />
+            <span>Connect</span>
+            <i />
+            <span>Launch</span>
+          </div>
+        </div>
+      </section>
+
+      <section className="statement" id="mission">
+        <div className="sectionLabel">
+          <span>01</span>
+          <p>Our mission</p>
+        </div>
+        <div className="statementBody">
+          <p className="statementIntro">
+            We are building a future where Black students don’t just adapt to
+            new technology—
+          </p>
+          <h2>they shape it.</h2>
+          <div className="missionGrid">
+            <p>
+              Project Interlock closes the distance between potential and
+              access. We create connected pathways that help students gain
+              future-ready skills, trusted guidance, financial support, and
+              direct exposure to opportunity.
+            </p>
+            <p>
+              Our work is centered on community and powered by partnership,
+              because lasting change happens when education, industry, and
+              mentorship move together.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section className="programSection" id="programs">
+        <div className="programIntro">
+          <div className="sectionLabel light">
+            <span>02</span>
+            <p>What we do</p>
+          </div>
+          <div>
+            <p className="eyebrow">Five pathways. One promise.</p>
+            <h2>
+              From first spark
+              <br />
+              to first opportunity.
+            </h2>
+          </div>
+          <p className="programSummary">
+            Each pathway is powerful on its own. Interlocked, they create a
+            support system that meets students at every stage of the journey.
+          </p>
+        </div>
+
+        <div className="programList">
+          {programs.map((program) => (
+            <article className="programCard" key={program.title}>
+              <span className="programNumber">{program.number}</span>
+              <div className="programTitle">
+                <span>{program.tag}</span>
+                <h3>{program.title}</h3>
+              </div>
+              <p>{program.description}</p>
+              <span className="programArrow" aria-hidden="true">
+                ↗
+              </span>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="pathwaySection" id="pathway">
+        <div className="sectionLabel">
+          <span>03</span>
+          <p>The journey</p>
+        </div>
+        <div className="pathwayHeader">
+          <p className="eyebrow">A pathway built to move with you</p>
+          <h2>
+            Curiosity becomes
+            <span> capability.</span>
+          </h2>
+        </div>
+
+        <div className="pathwayTrack">
+          {pathways.map((item, index) => (
+            <article className="pathwayStep" key={item.step}>
+              <div className="stepMarker">
+                <span>{String(index + 1).padStart(2, "0")}</span>
+              </div>
+              <p className="stepName">{item.step}</p>
+              <h3>{item.title}</h3>
+              <p>{item.copy}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="beliefSection">
+        <div className="beliefMark" aria-hidden="true">
+          “
+        </div>
+        <blockquote>
+          The next generation of AI builders, problem-solvers, and leaders is
+          already here.
+          <span>We’re here to make sure opportunity finds them.</span>
+        </blockquote>
+        <div className="beliefTag">
+          <span />
+          <p>Our belief</p>
+        </div>
+      </section>
+
+      <section className="involvementSection" id="get-involved">
+        <div className="involvementHeader">
+          <div className="sectionLabel light">
+            <span>04</span>
+            <p>Get involved</p>
+          </div>
+          <h2>
+            Where do you
+            <span> plug in?</span>
+          </h2>
+          <p>
+            It takes an interlocked community to build an equitable future.
+            Choose the role that feels like yours.
+          </p>
+        </div>
+
+        <div className="involvementGrid">
+          {involvement.map((item, index) => (
+            <article className="involvementCard" key={item.title}>
+              <span className="cardIndex">0{index + 1}</span>
+              <p className="eyebrow">{item.eyebrow}</p>
+              <h3>{item.title}</h3>
+              <p>{item.copy}</p>
+              <a href={item.href}>
+                {item.cta} <span aria-hidden="true">→</span>
+              </a>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="closingCta">
+        <div className="closingGlow" aria-hidden="true" />
+        <p className="eyebrow">The future is being built now.</p>
+        <h2>
+          Let’s make sure
+          <br />
+          <span>everyone can build it.</span>
+        </h2>
+        <a
+          className="button buttonGold"
+          href="mailto:info@projectinterlock.org?subject=Connect%20with%20Project%20Interlock"
+        >
+          Start a conversation <span aria-hidden="true">↗</span>
+        </a>
+      </section>
+
+      <footer>
+        <div className="footerBrand">
+          <img
+            src="/assets/project-interlock-logo.png"
+            alt="Project Interlock"
+          />
+          <p>
+            Connecting Black talent, technology, and opportunity for an
+            AI-powered future.
+          </p>
+        </div>
+        <div className="footerLinks">
+          <div>
+            <p>Explore</p>
+            <a href="#mission">About</a>
+            <a href="#programs">Programs</a>
+            <a href="#pathway">Pathways</a>
+          </div>
+          <div>
+            <p>Connect</p>
+            <a href="#get-involved">Students</a>
+            <a href="#get-involved">Mentors</a>
+            <a href="#get-involved">Partners</a>
+          </div>
+        </div>
+        <div className="footerBottom">
+          <p>© 2026 Project Interlock. AI Education &amp; Pathways.</p>
+          <a href="#top">Back to top ↑</a>
+        </div>
+      </footer>
+    </main>
+  );
+}
