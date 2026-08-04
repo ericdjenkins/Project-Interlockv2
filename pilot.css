@@ -1,0 +1,20 @@
+.pilot-banner{display:flex;align-items:center;justify-content:center;gap:18px;padding:11px 5vw;background:var(--gold);color:var(--ink);font-size:.82rem;text-align:center}
+.pilot-banner strong{text-transform:uppercase;letter-spacing:.08em}
+.pilot-banner span{font-weight:700}
+.site-header{top:41px}
+.pilot-status{padding:70px 7vw;background:#fff;display:grid;grid-template-columns:.8fr 1.2fr;gap:7vw;scroll-margin-top:150px}
+.pilot-status h2{font-size:clamp(2rem,3.3vw,3.5rem);margin-bottom:0}
+.pilot-status dl{margin:0;display:grid;gap:13px}
+.pilot-status dl div{padding:18px 20px;border-left:4px solid var(--blue);background:var(--cream)}
+.pilot-status dt{font-size:.72rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--blue)}
+.pilot-status dd{margin:6px 0 0;font-weight:800}
+.timing-grid{padding:70px 7vw;display:grid;grid-template-columns:1fr 1fr;gap:20px;scroll-margin-top:150px}
+.timing-grid article{padding:38px;background:#fff;border-top:5px solid var(--blue)}
+.timing-grid article:last-child{border-top-color:var(--gold)}
+.timing-grid h2{font-size:2rem;margin:18px 0 10px}
+.timing-grid p{color:var(--muted)}
+.status-chip{display:inline-block;padding:7px 11px;border-radius:100px;font-size:.72rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase}
+.status-chip.now{background:#dcecff;color:#0645a5}
+.status-chip.launch{background:#fff0bd;color:#624600}
+@media(max-width:760px){.pilot-banner{align-items:flex-start;gap:4px;flex-direction:column;padding:10px 5vw}.site-header{top:59px}.pilot-status,.timing-grid{grid-template-columns:1fr;padding:55px 6vw}.pilot-status,.timing-grid{scroll-margin-top:145px}}
+@media(max-width:480px){.pilot-banner span{font-size:.74rem}.site-header{top:61px}}
