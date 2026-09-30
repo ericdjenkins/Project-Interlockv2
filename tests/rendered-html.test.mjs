@@ -2,15 +2,13 @@ import assert from "node:assert/strict";
 import { access, readFile } from "node:fs/promises";
 import test from "node:test";
 
-const developmentPreviewMeta =
-  /<meta(?=[^>]*\bname=["']codex-preview["'])(?=[^>]*\bcontent=["']development["'])[^>]*>/i;
-const pagePaths = ["/", "/why", "/about", "/programs", "/pathways", "/get-involved"];
+const pagePaths = ["/", "/why", "/about", "/the-pathway", "/faq", "/get-involved"];
 const expectedPageCopy = new Map([
   ["/", ["Talent is everywhere.", "Building toward a 2027 pilot."]],
   ["/why", ["Why representation matters", "Black and Latino", "47%", "51%"]],
   ["/about", ["About Project Interlock", "The opportunity gap is measurable."]],
-  ["/programs", ["Five supports. One connected pathway.", "Available now", "Coming in 2027"]],
-  ["/pathways", ["Discover. Build. Connect. Experience. Launch.", "2027 pilot launch"]],
+  ["/the-pathway", ["Learn. Support. Mentor. Experience. Launch.", "Available now", "Coming in 2027"]],
+  ["/faq", ["What to know before launch.", "Who is the pilot designed for?"]],
   ["/get-involved", ["Help shape the 2027 pilot.", "Where do you want to plug in?"]],
 ]);
 
@@ -57,7 +55,7 @@ for (const path of pagePaths) {
 
     assert.equal(response.status, 200);
     assert.match(response.headers.get("content-type") ?? "", /^text\/html\b/i);
-    assert.match(html, developmentPreviewMeta);
+    assert.doesNotMatch(html, /codex-preview/);
     assert.match(html, /Project Interlock/);
     assert.match(html, /Work in progress:/);
     assert.match(html, /2027/);

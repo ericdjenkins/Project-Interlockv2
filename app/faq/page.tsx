@@ -1,0 +1,13 @@
+import { InteriorPage } from "../components/site-chrome";
+import type { Metadata } from "next";
+export const metadata: Metadata = { title: "FAQ | Project Interlock", description: "Answers about Project Interlock's proposed 2027 pilot, eligibility, student enrollment, tuition, and partnership opportunities." };
+const faqs = [
+  ["When does the program start?", "Project Interlock is targeting mid–late 2027 for the Greater Boston pilot cohort. Dates will be confirmed as partner agreements and the operating plan are finalized."],
+  ["Can students apply now?", "Not yet. Enrollment is not open. Students and families can join the interest list now to receive planning updates and hear when pilot recruitment begins."],
+  ["Who is the pilot designed for?", "The proposed pilot centers Black and Latino students across the diaspora in Greater Boston, with an initial focus on communities and campuses within roughly 20 miles of Boston. Final enrollment criteria, participating institutions, and dates will be announced after partner agreements and funding are in place."],
+  ["How can employers and colleges get involved before launch?", "Partners can help co-design curriculum, mentoring, transfer routes, student supports, paid projects, internships, career exposure, and evaluation. Start a partnership conversation through the interest form."],
+  ["Is this tuition support or wraparound pathway support?", "The model is primarily a wraparound pathway: completion support, mentoring, AI and engineering learning, transfer navigation, paid experience, and career connections. Scholarship guidance and targeted gap support may complement—not replace—available public tuition programs."],
+  ["How do MassEducate and MassReconnect relate?", "Those Massachusetts programs can reduce tuition-and-fee barriers at public community colleges for eligible residents. Project Interlock is designed to help address the barriers tuition programs do not solve on their own, including technology, transportation, emergency support, advising, transfer maps, mentors, and paid experience."],
+];
+
+export default function FAQ() { return <InteriorPage eyebrow="Frequently asked questions" title="What to know before launch." lead="The Greater Boston pilot is in design. Enrollment is not open; join the interest list for updates."><section className="faqSection" id="faq" aria-labelledby="faq-title"><div><p className="eyebrow">Pilot FAQ</p><h2 id="faq-title">Questions and answers</h2></div><div className="faqList">{faqs.map(([question, answer]) => <details key={question}><summary>{question}<span aria-hidden="true">+</span></summary><p>{answer}</p></details>)}</div></section></InteriorPage>; }

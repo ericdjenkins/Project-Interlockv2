@@ -301,7 +301,7 @@ export default function WhyPage() {
           <i />
           <span>Launch</span>
         </div>
-        <a className="button buttonGold" href="/programs">
+        <a className="button buttonGold" href="/the-pathway">
           Explore the five supports <span aria-hidden="true">→</span>
         </a>
       </section>
