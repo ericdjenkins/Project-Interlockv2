@@ -16,8 +16,13 @@ export const metadata: Metadata = {
   title: "Project Interlock | Greater Boston 2027 Pilot",
   description:
     "Project Interlock is designing a 2027 Greater Boston pilot connecting Black and Latino students with engineering education, AI learning, mentors, paid experience, and career pathways.",
-  other: {
-    "codex-preview": "development",
+  metadataBase: new URL("https://project-interlock.ericdjenkins.chatgpt.site"),
+  openGraph: {
+    title: "Project Interlock | Greater Boston 2027 Pilot",
+    description: "Learn, Support, Mentor, Experience, Launch: a connected engineering and AI pathway for Black and Latino students.",
+    url: "https://project-interlock.ericdjenkins.chatgpt.site",
+    siteName: "Project Interlock",
+    type: "website",
   },
   icons: {
     icon: "/assets/project-interlock-mark.png",

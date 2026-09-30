@@ -374,6 +374,9 @@ summary:focus-visible {
   align-items: center;
   display: flex;
   gap: 11px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  max-width: min(520px, calc(100vw - 48px));
 }
 
 .signalItems span {
@@ -1062,6 +1065,11 @@ footer {
 
   .signalLabel {
     text-align: left;
+  }
+
+  .signalItems {
+    justify-content: flex-start;
+    gap: 7px;
   }
 
   .statement,
