@@ -7,24 +7,24 @@ if [[ "${SITES_ENV_READY:-}" != "1" ]]; then
   exec "${script_dir}/sites-env.sh" -- "$0" "$@"
 fi
 
-command -v flock >/dev/null || {
+command -v flock || {
   echo "install-ci.sh requires Linux flock." >&2
   exit 69
 }
-command -v timeout >/dev/null || {
+command -v timeout || {
   echo "install-ci.sh requires GNU timeout." >&2
   exit 69
 }
-command -v curl >/dev/null || {
+command -v curl || {
   echo "install-ci.sh requires curl for the locked-tarball preflight." >&2
   exit 69
 }
-command -v sha256sum >/dev/null || {
+command -v sha256sum || {
   echo "install-ci.sh requires sha256sum for cache and install verification." >&2
   exit 69
 }
 
-runtime_root="${SITES_PROJECT_ROOT}/.sites-runtime"
+runtime_root="${SITES_RUNTIME_ROOT:-${SITES_PROJECT_ROOT}/.sites-runtime}"
 expected_home="${runtime_root}/home"
 expected_cache="${runtime_root}/npm-cache"
 
@@ -33,7 +33,7 @@ if [[ "${HOME}" != "${expected_home}" ]]; then
   echo "Expected HOME=${expected_home}, got HOME=${HOME}." >&2
   exit 78
 fi
-actual_cache="$(npm config get cache)"
+actual_cache="$(npm --prefix "${SITES_PROJECT_ROOT}" --workspaces=false config get cache)"
 if [[ "${actual_cache}" != "${expected_cache}" ]]; then
   echo "Expected npm cache ${expected_cache}, got ${actual_cache}." >&2
   exit 78
@@ -54,9 +54,9 @@ fi
 for process in /proc/[0-9]*; do
   pid="${process##*/}"
   [[ "${pid}" != "$$" && "${pid}" != "${PPID}" ]] || continue
-  process_cwd="$(readlink -f "${process}/cwd" 2>/dev/null || true)"
+  process_cwd="$(readlink -f "${process}/cwd" || true)"
   [[ "${process_cwd}" == "${SITES_PROJECT_ROOT}" ]] || continue
-  process_command="$(tr '\0' ' ' <"${process}/cmdline" 2>/dev/null || true)"
+  process_command="$(tr '\0' ' ' <"${process}/cmdline" || true)"
   if [[ "${process_command}" == *"npm ci"* ]]; then
     echo "Another npm ci is visible in ${SITES_PROJECT_ROOT}; refusing to overlap installs." >&2
     exit 75
@@ -65,15 +65,19 @@ done
 
 lockfile_sha256="$(sha256sum "${SITES_PROJECT_ROOT}/package-lock.json" | awk '{print $1}')"
 use_seeded_cache=0
+# Report seed selection separately from package cache hits or downloads.
+cache_seed_result=seed_unavailable
 seed_cache="${SITES_NPM_CACHE_SEED:-}"
 if [[ -n "${seed_cache}" && -d "${seed_cache}" ]]; then
-  seed_lockfile_sha256="$(cat "${seed_cache}/.sites-lockfile-sha256" 2>/dev/null || true)"
+  seed_lockfile_sha256="$(cat "${seed_cache}/.sites-lockfile-sha256" || true)"
   if [[ "${seed_lockfile_sha256}" == "${lockfile_sha256}" ]]; then
     echo "[sites] restoring image-seeded npm cache"
     cp -a "${seed_cache}/." "${expected_cache}/"
     use_seeded_cache=1
+    cache_seed_result=seed_used
     echo "[sites] image cache seed matched; registry fallback remains available"
   else
+    cache_seed_result=seed_lockfile_mismatch
     echo "[sites] image cache seed does not match this lockfile; using the network path"
   fi
 fi
@@ -89,7 +93,7 @@ if (!vinext?.resolved || !vinext?.integrity) {
 console.log(vinext.resolved);
 console.log(vinext.integrity);
 NODE
-} 2>/dev/null)" || {
+})" || {
   echo "Could not read the integrity-pinned vinext tarball from package-lock.json." >&2
   exit 65
 }
@@ -103,7 +107,7 @@ locked_tarball="${locked_vinext[0]}"
 locked_integrity="${locked_vinext[1]}"
 
 if [[ "${use_seeded_cache}" == "0" ]]; then
-  registry="$(npm config get registry)"
+  registry="$(npm --prefix "${SITES_PROJECT_ROOT}" --workspaces=false config get registry)"
   preflight_url="$({ node --input-type=module - "${locked_tarball}" "${registry}" <<'NODE'
 const locked = new URL(process.argv[2]);
 const registry = new URL(process.argv[3]);
@@ -114,7 +118,7 @@ if (locked.hostname === "registry.npmjs.org") {
 }
 process.stdout.write(locked.href);
 NODE
-} 2>/dev/null)" || {
+})" || {
   echo "Could not construct the locked-tarball preflight URL." >&2
   exit 65
   }
@@ -158,7 +162,7 @@ echo "[sites] running exactly one bounded npm ci"
 export NPM_CONFIG_MAXSOCKETS=1
 export NPM_CONFIG_FETCH_RETRIES=0
 export NPM_CONFIG_FETCH_TIMEOUT=30000
-npm_ci_args=(ci --cache "${expected_cache}")
+npm_ci_args=(ci --prefix "${SITES_PROJECT_ROOT}" --workspaces=false --include=dev --include=optional --cache "${expected_cache}")
 if [[ "${use_seeded_cache}" == "1" ]]; then
   npm_ci_args+=(--prefer-offline)
 fi
@@ -166,7 +170,7 @@ timeout \
   --signal=TERM \
   --kill-after="${SITES_INSTALL_KILL_AFTER:-15s}" \
   "${SITES_INSTALL_TIMEOUT:-8m}" \
-  npm "${npm_ci_args[@]}"
+  node "${script_dir}/npm-install.mjs" "${cache_seed_result}" npm "${npm_ci_args[@]}"
 
 vinext="${SITES_PROJECT_ROOT}/node_modules/.bin/vinext"
 if [[ ! -x "${vinext}" ]]; then

@@ -1,62 +1,25 @@
 {
   "version": "6",
   "dialect": "sqlite",
-  "id": "69bfa07e-3510-48d2-8f22-219f7f415c95",
+  "id": "8874b630-23a2-4e5b-8d2b-14a8cb9f3bd8",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "tables": {
-    "interest_submissions": {
-      "name": "interest_submissions",
+    "pilot_records": {
+      "name": "pilot_records",
       "columns": {
         "id": {
           "name": "id",
-          "type": "integer",
+          "type": "text",
           "primaryKey": true,
           "notNull": true,
-          "autoincrement": true
+          "autoincrement": false
         },
-        "role": {
-          "name": "role",
+        "payload": {
+          "name": "payload",
           "type": "text",
           "primaryKey": false,
           "notNull": true,
           "autoincrement": false
-        },
-        "name": {
-          "name": "name",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": true,
-          "autoincrement": false
-        },
-        "email": {
-          "name": "email",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": true,
-          "autoincrement": false
-        },
-        "organization": {
-          "name": "organization",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": true,
-          "autoincrement": false,
-          "default": "''"
-        },
-        "involvement": {
-          "name": "involvement",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": true,
-          "autoincrement": false
-        },
-        "created_at": {
-          "name": "created_at",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": true,
-          "autoincrement": false,
-          "default": "CURRENT_TIMESTAMP"
         }
       },
       "indexes": {},

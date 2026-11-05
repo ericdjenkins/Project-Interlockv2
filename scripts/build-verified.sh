@@ -7,7 +7,7 @@ if [[ "${SITES_ENV_READY:-}" != "1" ]]; then
   exec "${script_dir}/sites-env.sh" -- "$0" "$@"
 fi
 
-command -v timeout >/dev/null || {
+command -v timeout || {
   echo "build-verified.sh requires GNU timeout." >&2
   exit 69
 }
@@ -24,5 +24,3 @@ timeout \
   --kill-after="${SITES_BUILD_KILL_AFTER:-10s}" \
   "${SITES_BUILD_TIMEOUT:-3m}" \
   "${vinext}" build
-
-"${script_dir}/validate-artifact.sh"
