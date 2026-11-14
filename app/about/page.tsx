@@ -1,21 +1,38 @@
-import { InteriorPage } from "../components/site-chrome";
+import { ClosingBand, PageHero, SiteFooter, SiteHeader } from "../components/SiteChrome";
 
-const roadmap = [
-  ["2026 H2", "Partner outreach + advisory group", "Invite colleges, employers, community organizations, students, families, and funders into the design process."],
-  ["2026–2027", "Pathway design", "Refine curriculum, mentoring, completion support, transfer coordination, and paid-experience models."],
-  ["Early 2027", "Pilot readiness", "Confirm agreements, operating plans, referral routes, mentor preparation, and internship commitments."],
-  ["Early–mid 2027", "First-cohort recruitment", "Open pilot enrollment and conduct a supported, community-based recruitment process."],
-  ["Mid–late 2027", "Pilot cohort start", "Begin full pathway delivery and track participation, persistence, experience, and next steps."],
+const values = [
+  ["Access", "Opportunity should not depend on ZIP code, wealth, or who a student already knows."],
+  ["Belonging", "Students thrive when they can see themselves as builders, researchers, founders, and leaders."],
+  ["Connection", "Education, mentorship, funding, and employment work best as one connected system."],
+  ["Agency", "Young people should be equipped not only to use AI, but to question, shape, and lead it."],
 ];
 
-export default function About() {
-  return <InteriorPage eyebrow="About Project Interlock" title="Talent is everywhere. Access is not." lead="Project Interlock is an emerging Greater Boston initiative building a connected engineering and AI pathway with a projected 2027 pilot launch.">
-    <section className="statusSection" aria-labelledby="where-now-about"><div><p className="eyebrow">Where we are now</p><h2 id="where-now-about">Designing the pilot with the community.</h2></div><dl className="statusList"><div><dt>Status</dt><dd>Pilot design phase</dd></div><div><dt>Target launch</dt><dd>2027</dd></div><div><dt>Current focus</dt><dd>Partner recruitment, pathway design, and pilot cohort planning</dd></div></dl></section>
-    <section className="contentSection splitFeature"><div><p className="eyebrow">Our mission</p><h2>Close the distance between potential and opportunity.</h2></div><div><p>Project Interlock is preparing to serve Black and Latino students and emerging talent across Greater Boston. Students will learn, create, and lead with artificial intelligence—not only as users, but as designers, decision-makers, entrepreneurs, and owners.</p><p>The initial model focuses on communities and campuses within approximately 20 miles of Boston, connecting tuition-free community college access with public engineering programs, completion support, mentors, paid experience, and career pathways.</p></div></section>
-    <section className="communityBuild"><div><p className="eyebrow">Building with the community</p><h2>The pathway will be stronger because more voices shape it.</h2></div><div><p>Project Interlock is inviting colleges, employers, community-based organizations, students, families, and funders to help refine the pilot before launch. Early conversations will inform recruitment, advising, curriculum, mentoring, transfer, internship, and support design.</p><a href="/get-involved#interest-form">Share your perspective →</a><small>Named partners and logos will appear as agreements are finalized.</small></div></section>
-    <section className="researchGrounding" aria-labelledby="research-title"><div className="researchIntro"><p className="eyebrow">Research grounding</p><h2 id="research-title">The opportunity gap is measurable.</h2><p>Project Interlock’s model responds to documented gaps in representation, access, transfer, and student support. Figures are contextual research—not Project Interlock outcomes.</p></div><div className="researchStats"><article><strong>5%</strong><h3>Black representation in engineering and architecture jobs</h3><p>Pew Research Center’s analysis of 2017–2019 American Community Survey data found Black workers were 9% of the overall STEM workforce and 5% of engineering and architecture workers.</p><a href="https://www.pewresearch.org/science/2021/04/01/stem-jobs-see-uneven-progress-in-increasing-gender-racial-and-ethnic-diversity/" target="_blank" rel="noreferrer">Read the Pew analysis ↗</a></article><article><strong>8%</strong><h3>Hispanic representation in STEM jobs</h3><p>The same Pew analysis found Hispanic workers were 8% of STEM workers while representing 17% of employment across all occupations.</p><a href="https://www.pewresearch.org/science/2021/04/01/stem-jobs-see-uneven-progress-in-increasing-gender-racial-and-ethnic-diversity/" target="_blank" rel="noreferrer">Read the Pew analysis ↗</a></article><article><strong>34</strong><h3>Transferable general-education credits</h3><p>MassTransfer’s General Education Foundation identifies 34 credits that can transfer among Massachusetts public community colleges, state universities, and UMass campuses.</p><a href="https://www.mass.edu/masstransfer/" target="_blank" rel="noreferrer">Explore MassTransfer ↗</a></article></div><div className="researchLinks"><p>MassEducate and MassReconnect make tuition and fees free at Massachusetts public community colleges for eligible students. Project Interlock’s proposed role is the connected wraparound pathway around that public benefit.</p><a href="https://www.mass.edu/osfa/programs/masseducate.asp" target="_blank" rel="noreferrer">Official free community college information ↗</a></div></section>
-    <section className="roadmapSection" id="roadmap" aria-labelledby="roadmap-title"><div className="roadmapIntro"><p className="eyebrow">2026–2027 roadmap</p><h2 id="roadmap-title">From co-design to first cohort.</h2><p>Timing is projected and will be refined with launch partners.</p></div><ol className="roadmapList">{roadmap.map(([time, title, copy], index) => <li key={time + title}><span>{String(index + 1).padStart(2, "0")}</span><div><p>{time}</p><h3>{title}</h3><p>{copy}</p></div></li>)}</ol></section>
-    <section className="successMeasures" aria-labelledby="success-title"><div><p className="eyebrow">Pilot success measures</p><h2 id="success-title">How we’ll measure success.</h2><p>These measures will be tracked from 2027. They are a measurement framework—not current outcomes.</p></div><div className="measureGrid"><article><span>01</span><h3>Enrollment</h3><p>Who enters the pathway and whether recruitment reaches the intended Greater Boston communities.</p></article><article><span>02</span><h3>Persistence</h3><p>Continued participation, course progress, transfer milestones, and use of completion supports.</p></article><article><span>03</span><h3>Experience</h3><p>Mentoring participation, portfolio work, paid projects, internships, and professional network growth.</p></article><article><span>04</span><h3>Employment</h3><p>Verified next steps into engineering programs, credentials, apprenticeships, internships, and employment.</p></article></div></section>
-    <section className="ctaPanel"><div><p className="eyebrow">Questions before launch</p><h2>Learn about eligibility, timing, and partnerships.</h2></div><a className="button buttonGold" href="/faq">Read the FAQ</a></section>
-  </InteriorPage>;
+export default function AboutPage() {
+  return <main>
+    <SiteHeader />
+    <PageHero eyebrow="About Project Interlock" title="Potential is universal." accent="Access is not." copy="Project Interlock is building a connected AI and STEM opportunity network for African American students—linking learning, guidance, financial support, work experience, and careers." />
+    <section className="innerSection splitStory">
+      <div>
+        <p className="eyebrow blueText">Why we exist</p>
+        <h2>Closing the distance between talent and opportunity.</h2>
+      </div>
+      <div className="storyCopy">
+        <p>Artificial intelligence is changing how people learn, work, create, and lead. Yet the communities with the most to gain are too often the least connected to early exposure, trusted guidance, and career-building networks.</p>
+        <p>Project Interlock responds by bringing the essential pieces together. Students gain practical skills, mentors who understand their journey, pathways to pay for education, real workplace experience, and direct connections to employers.</p>
+        <p>Our north star is simple: African American students should participate fully in the AI economy—not only as users, but as designers, decision-makers, entrepreneurs, and owners.</p>
+      </div>
+    </section>
+    <section className="innerSection navyPanel">
+      <p className="eyebrow goldText">What guides us</p>
+      <div className="valueGrid">
+        {values.map(([title, copy], i) => <article key={title}><span>0{i + 1}</span><h3>{title}</h3><p>{copy}</p></article>)}
+      </div>
+    </section>
+    <section className="innerSection visionGrid">
+      <div><p className="eyebrow blueText">Our vision</p><h2>A generation that shapes what comes next.</h2></div>
+      <blockquote>“The future of technology should be built by the full range of talent it will serve.”</blockquote>
+    </section>
+    <ClosingBand />
+    <SiteFooter />
+  </main>;
 }

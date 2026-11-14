@@ -1,4 +1,29 @@
-import { InterestForm } from "../components/InterestForm";
-import { InteriorPage } from "../components/site-chrome";
-const groups = [["students", "Students & families", "Join the interest list", "Tell us what you hope to learn, what support matters, and how you would like to hear about pilot cohort recruitment."], ["educators", "Educators & colleges", "Help align the pathway", "Explore recruitment, advising, curriculum, transfer, facilities, wraparound support, and pilot cohort coordination."], ["partners", "Employers & funders", "Partner for the 2027 pilot", "Help shape paid projects, internships, mentoring, career exposure, evaluation, and the launch investment."]];
-export default function GetInvolved() { return <InteriorPage eyebrow="Get involved" title="Help shape the 2027 pilot." lead="Project Interlock is in the design phase. Students, families, educators, employers, funders, and community organizations can help build a stronger Greater Boston pathway now."><section className="contentSection involvementPageGrid">{groups.map(([id, eyebrow, title, copy]) => <article id={id} key={id}><p className="eyebrow">{eyebrow}</p><h2>{title}</h2><p>{copy}</p><a href="#interest-form">Share your interest →</a></article>)}</section><section className="pilotBrief" id="pilot-brief"><div><p className="eyebrow">2027 pilot partnership brief</p><h2>A Greater Boston engineering and AI pathway, built together.</h2><p>The proposed pilot will connect public community college access, engineering transfer, responsible-AI learning, mentoring, completion support, paid experience, and career launch for Black and Latino students within approximately 20 miles of Boston.</p></div><ul><li><strong>Colleges</strong><span>Recruitment, advising, curriculum alignment, transfer maps, faculty, facilities, and student support</span></li><li><strong>Employers</strong><span>Mentors, speakers, paid projects, internships, job shadows, and career connections</span></li><li><strong>Community organizations</strong><span>Trusted outreach, family engagement, referrals, and wraparound support</span></li><li><strong>Funders</strong><span>Pilot design, delivery, student supports, paid experiences, evaluation, and sustainability</span></li></ul><p className="partnerNote">Named partners and logos will appear as agreements are finalized.</p></section><section className="interestFormSection" id="interest-form" aria-labelledby="interest-title"><div className="formIntro"><p className="eyebrow">Interest list</p><h2 id="interest-title">Where do you want to plug in?</h2><p>Complete the short form and we’ll keep you informed as the projected 2027 launch approaches. You can also email <a href="mailto:ejenkins@projectinterlock.com">ejenkins@projectinterlock.com</a>; expected response time is 2–3 business days.</p></div><InterestForm /></section></InteriorPage>; }
+import { PageHero, SiteFooter, SiteHeader } from "../components/SiteChrome";
+
+const ways = [
+  ["students", "For students & families", "Find your pathway", "Get updates about workshops, mentoring, scholarships, internships, and career opportunities.", "Join the interest list", "Student Interest"],
+  ["mentors", "For professionals", "Open a door", "Share your experience as a mentor, speaker, project coach, or career connector.", "Become a mentor", "Mentor Interest"],
+  ["partners", "For organizations", "Build the bridge", "Fund learning, sponsor scholarships, host interns, provide mentors, or create employment pathways.", "Explore partnership", "Partnership Interest"],
+  ["supporters", "For supporters", "Fuel the mission", "Help expand access to future-ready education and the networks that turn preparation into progress.", "Support Project Interlock", "Support Interest"],
+];
+
+export default function GetInvolvedPage() {
+  return <main>
+    <SiteHeader />
+    <PageHero eyebrow="Get involved" title="Your connection can" accent="change a trajectory." copy="Students, families, mentors, educators, employers, funders, and community leaders all have a place in the Project Interlock ecosystem." />
+    <section className="involveDetailGrid">
+      {ways.map(([id, eyebrow, title, copy, cta, subject], i) => <article id={id} key={id}>
+        <span className="cardIndex">0{i + 1}</span>
+        <p className="eyebrow blueText">{eyebrow}</p>
+        <h2>{title}</h2>
+        <p>{copy}</p>
+        <a className="button buttonGold" href={`mailto:info@projectinterlock.org?subject=${encodeURIComponent(subject + " - Project Interlock")}`}>{cta} <span>→</span></a>
+      </article>)}
+    </section>
+    <section className="contactBand">
+      <div><p className="eyebrow goldText">Not sure where you fit?</p><h2>Start a conversation.</h2></div>
+      <div><p>Tell us a little about yourself and how you would like to connect. We’ll help identify the right next step.</p><a href="mailto:info@projectinterlock.org">info@projectinterlock.org ↗</a></div>
+    </section>
+    <SiteFooter />
+  </main>;
+}
