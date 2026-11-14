@@ -1,0 +1,107 @@
+name: Deploy static site via FTPS
+
+on:
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: Preview changes without uploading or deleting files
+        type: boolean
+        required: true
+        default: true
+
+permissions:
+  contents: read
+
+concurrency:
+  group: hostinger-ftps
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    environment: hostinger
+    steps:
+      - name: Check out selected branch
+        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          persist-credentials: false
+
+      - name: Validate deployment configuration and stage static files
+        env:
+          FTP_SERVER: ${{ secrets.FTP_SERVER }}
+          FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
+          FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+          FTP_SERVER_DIR: ${{ vars.FTP_SERVER_DIR }}
+          FTP_LOCAL_DIR: ${{ vars.FTP_LOCAL_DIR }}
+        run: |
+          python3 - <<'PY'
+          import os
+          import shutil
+          from pathlib import Path
+
+          required = ("FTP_SERVER", "FTP_USERNAME", "FTP_PASSWORD",
+                      "FTP_SERVER_DIR", "FTP_LOCAL_DIR")
+          missing = [key for key in required if not os.environ.get(key, "").strip()]
+          if missing:
+              raise SystemExit("Missing configuration: " + ", ".join(missing))
+          remote = os.environ["FTP_SERVER_DIR"].strip()
+          if not remote.endswith("/") or remote in ("/", "./") or ".." in remote.split("/"):
+              raise SystemExit("FTP_SERVER_DIR must be a dedicated website directory ending in /.")
+          root = Path(os.environ["GITHUB_WORKSPACE"]).resolve()
+          selected = Path(os.environ["FTP_LOCAL_DIR"].strip())
+          source = (root / selected).resolve()
+          if selected.is_absolute() or not source.is_relative_to(root) or source == root:
+              raise SystemExit("FTP_LOCAL_DIR must be a dedicated directory inside the repository.")
+          if not (source / "index.html").is_file():
+              raise SystemExit("Selected directory must contain a built static index.html; see .github/FTP_DEPLOY.md.")
+          if any((source / name).exists() for name in
+                 ("package.json", "app", "node_modules", "worker", ".git")):
+              raise SystemExit("Selected directory contains application source/runtime files, not a static export.")
+          destination = Path(os.environ["RUNNER_TEMP"]) / "ftp-static-site"
+          if destination.exists():
+              shutil.rmtree(destination)
+          destination.mkdir()
+          allowed = {".html", ".htm", ".css", ".js", ".mjs", ".json", ".xml", ".txt",
+                     ".png", ".jpg", ".jpeg", ".gif", ".webp", ".avif", ".svg", ".ico",
+                     ".woff", ".woff2", ".ttf", ".otf", ".eot", ".pdf", ".mp4", ".webm"}
+          count = 0
+          for item in source.rglob("*"):
+              relative = item.relative_to(source)
+              if any(part.startswith(".") for part in relative.parts):
+                  continue
+              if item.is_symlink():
+                  raise SystemExit("Symlinks are not allowed in the deployment directory.")
+              if not item.is_file():
+                  continue
+              if item.suffix.lower() not in allowed:
+                  raise SystemExit("Unsupported static file type: " + str(relative))
+              target = destination / relative
+              target.parent.mkdir(parents=True, exist_ok=True)
+              shutil.copy2(item, target)
+              count += 1
+          with open(os.environ["GITHUB_ENV"], "a") as handle:
+              handle.write("FTP_STAGED_DIR=" + str(destination) + "/\n")
+          print(f"Staged {count} static files.")
+          PY
+
+      - name: Preview or deploy static files
+        uses: SamKirkland/FTP-Deploy-Action@3a9c65ae0fc12ac924ccef8afc26941cc43aad0b # v4.4.0
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          protocol: ftps
+          security: strict
+          port: ${{ vars.FTP_PORT || '21' }}
+          local-dir: ${{ env.FTP_STAGED_DIR }}
+          server-dir: ${{ vars.FTP_SERVER_DIR }}
+          state-name: .project-interlock-ftp-state.json
+          dry-run: ${{ inputs.dry_run }}
+          dangerous-clean-slate: false
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/node_modules/**
+            **/.env*
+          log-level: standard
