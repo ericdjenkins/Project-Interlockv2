@@ -53,3 +53,11 @@ For development use `npm run dev`; for production use `npm run build` then
 This branch is independent from the live Sites application. Its original
 `.openai/hosting.json` is intentionally omitted so it cannot accidentally
 publish over the current Sites project.
+
+## Program overview and documentation updates
+
+Read [the program and website overview](docs/PROGRAM_OVERVIEW.md) for the mission,
+pilot direction, website scope, known gaps, and change history. Update it with
+every website change, then run `npm run docs:update` and `npm run docs:check`.
+The generated inventory detects drift; narrative updates remain an editorial
+responsibility. GitHub reports a stale overview as a failed check.
