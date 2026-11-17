@@ -1,6 +1,6 @@
 # Project Interlock Program and Website Overview
 
-Last editorial review: November 15, 2026  
+Last editorial review: November 17, 2026  
 Maintainer: Eric Jenkins  
 Website source branch: `hostinger-version-4`  
 Intended production domain: `projectinterlock.org`
@@ -38,6 +38,21 @@ disconnected services.
 Detailed eligibility, cohort size, delivery schedules, funding amounts, and
 partner responsibilities remain to be finalized. The program aims to improve
 access and outcomes; it does not guarantee a scholarship, internship, or job.
+
+## Guiding principle: Reciprocity and Community
+
+**Reach Forward. Reach Back.**
+
+We believe individual success can create opportunity for others. As Project Interlock participants advance in their education and careers, we encourage them to reach back into their communities—sharing knowledge, offering mentorship, opening doors, and supporting the next generation of Black and Latino students across the diaspora pursuing STEM pathways.
+
+Contributions can grow with each person’s experience and capacity, from encouraging a peer to mentoring a student or making an introduction. Receiving support does not depend on giving back.
+
+For the planned 2027 pilot, we are designing opportunities for peer support and knowledge sharing. As participants progress, we plan to invite them back as mentors, speakers, and connections to education and career opportunities.
+
+The website introduces the principle on Home, explains it on About at
+`/about#reach-back`, connects it to Programs and Pathways, and invites mentor
+interest on Get involved. These are values and planned opportunities, not
+claims of current alumni activities.
 
 ## Community and partners
 
@@ -77,7 +92,7 @@ version, and a live Hostinger deployment are separate events.
 | --- | --- | --- |
 | Home | `/` | Introduces the mission, five original program areas, student journey, and ways to get involved. |
 | Why | `/why` | Explains representation in STEM and AI; includes workforce statistics, research links, and student-to-career imagery. |
-| About | `/about` | Describes the rationale, vision, and values of access, belonging, connection, and agency. |
+| About | `/about` | Describes the rationale, vision, and values of access, belonging, connection, agency, and reciprocity and community. |
 | Programs | `/programs` | Presents AI and STEM Education, Scholarship Access, Mentorship, Internships, and Career Launch. |
 | Pathways | `/pathways` | Describes the historical Discover / Build / Connect / Launch journey. |
 | Get involved | `/get-involved` | Offers student/family, professional, organization, and supporter contact links. |
@@ -119,8 +134,8 @@ The target is `projectinterlock.org` on Hostinger, connected to
 See [the deployment README](../README.md) for the build and start settings.
 This Node.js version does not require FTP, Cloudflare bindings, or a database.
 
-As of the editorial review above, code preparation and local production checks
-are complete. Hostinger publication and domain routing have not been verified.
+The initial migration passed local production checks. For the November 17
+reciprocity update, consult the commit's GitHub checks for validation status. Hostinger publication and domain routing have not been verified.
 The GitHub checks do not establish that the domain is live.
 
 The production test builds the site, starts the actual Node.js server, and checks
@@ -154,6 +169,7 @@ before this document can describe them as implemented.
 | Date | Change | Publication status |
 | --- | --- | --- |
 | 2026-11-14 | Prepared historical Version 4 for Hostinger using standard Next.js, local fonts, production-route checks, and deployment instructions. | Code pushed; Hostinger publication not verified. |
+| 2026-11-17 | Added Reach Forward. Reach Back. across Home, About, Programs, Pathways, and Get involved, with voluntary contributions and planned pilot/alumni opportunities. | Source update; Hostinger publication not verified. |
 | 2026-11-15 | Added this overview, documented current program direction and Version 4 gaps, and added a documentation freshness check. | Documentation change only; no website-content or domain change. |
 
 ## Source inventory
@@ -164,7 +180,7 @@ workflows. Fingerprints identify file contents, not a release approval.
 
 <!-- BEGIN GENERATED WEBSITE INVENTORY -->
 
-Source fingerprint: `955633eb1b9824e660ca335bbc079a0ec55d29f2bf7700fd2a30bd133d734a6c`
+Source fingerprint: `dfd6a4bb8a4b988108cc40e4de8e7fcb8b960d5c8a02870b19507390eab95637`
 
 Routes found: `/`, `/about`, `/get-involved`, `/pathways`, `/programs`, `/why`.
 
@@ -177,16 +193,16 @@ Build: `next build --webpack`. Start: `next start --hostname 0.0.0.0`.
 | `.github/workflows/hostinger-checks.yml` | `26c6637441ec733f4ae192a53ccaef6702c6d2d545d165468f7955ffeda03565` |
 | `.npmrc` | `a3909ac0447c469fda12c57374993be70f47ce73e49fd3124678c7c047f2214d` |
 | `README.md` | `f949a5e997b1cb5264dfa8604aa10ab32d425f1a59ffcfa5ddb7eca4f3bb933f` |
-| `app/about/page.tsx` | `76d9a35fcbf5323dc8648bee154bdd80d7931efd6e7d7fc92485238969a62098` |
+| `app/about/page.tsx` | `74e33f91d805ea91c30e80ccb2d2affa57df2f16186c275cf940a1e61bc35d90` |
 | `app/components/SiteChrome.tsx` | `5dfd4ab0c9d4b73f742587858a65668448761b8d63bbfd05dd3595d3b9cbd64f` |
 | `app/fonts/geist-latin.woff2` | `9b6f5ff45b278c744b5f379a2c4ecbaf858a842b8eaf82ac8d21b699ca16c608` |
 | `app/fonts/geist-mono-latin.woff2` | `5f3d6ad60f29d6cb708414ec6887163d63bf197377ef5417d2483ff31ace6c3b` |
-| `app/get-involved/page.tsx` | `815fffb0908998d380bceee1eceb4501e0e3de3909e7d3aa3d1b326c2237b2f6` |
+| `app/get-involved/page.tsx` | `1088e6be8a1055c198d09d69fa8de4fa907cb70b7caf0291e1fed511d20a7364` |
 | `app/globals.css` | `a931d4e2250aa43a38b4e95f8322ef73d0706baebfc5a413a40c87e1c282f162` |
 | `app/layout.tsx` | `b9cf884d101b3ece929e1967c6ec61a9cfa039169ad603223ade7269e99cb7d7` |
-| `app/page.tsx` | `f68b940167c36ffe7e32bce885d79ceceb9bf25b1b5460a51cb765dfb6b5a987` |
-| `app/pathways/page.tsx` | `7665be2969344966a9b6cc28004b9371bf7c55263a7ea1743b34cee02e422a15` |
-| `app/programs/page.tsx` | `c339ccd41d4ca3b2d8ae7681caa91f4d5a51db1f3d19de0914791f0aac6da029` |
+| `app/page.tsx` | `f2a0c81ab05e8c6743b6efd80c7e404f9bdada0831466d3404d4661c6f1413bd` |
+| `app/pathways/page.tsx` | `28ce0e95b2e767b961d9438dc6536de7ed0719cc7d02e680f0b3beab1b466961` |
+| `app/programs/page.tsx` | `799b37484588fdd21613ad565333d3ce86d60a22b3f422b76db8bde385fd4031` |
 | `app/why/page.tsx` | `0775b546d5331d70636d0e07faa546a00324f1bf25ce48b7ea7bb258f8af0c49` |
 | `next.config.ts` | `cb1292b255083ef3cf1283bc6408fda00db178a09d07a822a67ab646a7cea882` |
 | `package-lock.json` | `1e03fda503636c47d75ccfb286ea112a5f27b85750b9c57e11cb37929814c441` |

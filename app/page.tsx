@@ -320,7 +320,8 @@ export default function Home() {
         </a>
       </section>
 
-      <footer>
+      <section className="innerSection splitStory" id="reciprocity-home" aria-labelledby="reciprocity-home-title"><div><p className="eyebrow blueText">Reciprocity and Community</p><h2 id="reciprocity-home-title">Reach Forward. Reach Back.</h2></div><div className="storyCopy"><p>Build your future in STEM. Help someone else build theirs.</p><p>As participants advance, we encourage them to share their knowledge, experience, and connections to open doors for others in their communities.</p><a className="textLink darkLink" href="/about#reach-back">Explore our guiding principle →</a></div></section>
+    <footer>
         <div className="footerBrand">
           <img
             src="/assets/project-interlock-logo.png"

@@ -24,6 +24,7 @@ export default function PathwaysPage() {
       <div className="routeLine"><span>Learn</span><i /><span>Build</span><i /><span>Connect</span><i /><span>Launch</span></div>
     </section>
     <ClosingBand title="Start where you are. Build toward what’s next." />
+    <section className="innerSection splitStory" id="reciprocity-pathway" aria-labelledby="reciprocity-pathway-title"><div><p className="eyebrow blueText">Reciprocity and Community</p><h2 id="reciprocity-pathway-title">Reach Forward. Reach Back.</h2></div><div className="storyCopy"><p>For the planned 2027 pilot, we are designing opportunities for peer support and knowledge sharing. As participants progress, we plan to invite them back as mentors, speakers, and connections to education and career opportunities.</p><p>Contributions can grow with each person’s experience and capacity, from encouraging a peer to mentoring a student or making an introduction. Receiving support does not depend on giving back.</p><a className="textLink darkLink" href="/about#reach-back">Explore our guiding principle →</a></div></section>
     <SiteFooter />
   </main>;
 }

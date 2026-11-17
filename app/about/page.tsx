@@ -4,6 +4,7 @@ const values = [
   ["Access", "Opportunity should not depend on ZIP code, wealth, or who a student already knows."],
   ["Belonging", "Students thrive when they can see themselves as builders, researchers, founders, and leaders."],
   ["Connection", "Education, mentorship, funding, and employment work best as one connected system."],
+  ["Reciprocity and Community", "Reach Forward. Reach Back. As we advance, we help others follow."],
   ["Agency", "Young people should be equipped not only to use AI, but to question, shape, and lead it."],
 ];
 
@@ -28,6 +29,7 @@ export default function AboutPage() {
         {values.map(([title, copy], i) => <article key={title}><span>0{i + 1}</span><h3>{title}</h3><p>{copy}</p></article>)}
       </div>
     </section>
+    <section className="innerSection splitStory" id="reach-back" aria-labelledby="reach-back-title"><div><p className="eyebrow blueText">Reciprocity and Community</p><h2 id="reach-back-title">Reach Forward. Reach Back.</h2></div><div className="storyCopy"><p>We believe individual success can create opportunity for others. As Project Interlock participants advance in their education and careers, we encourage them to reach back into their communities—sharing knowledge, offering mentorship, opening doors, and supporting the next generation of Black and Latino students across the diaspora pursuing STEM pathways.</p><p>Contributions can grow with each person’s experience and capacity, from encouraging a peer to mentoring a student or making an introduction. Receiving support does not depend on giving back.</p><p>For the planned 2027 pilot, we are designing opportunities for peer support and knowledge sharing. As participants progress, we plan to invite them back as mentors, speakers, and connections to education and career opportunities.</p></div></section>
     <section className="innerSection visionGrid">
       <div><p className="eyebrow blueText">Our vision</p><h2>A generation that shapes what comes next.</h2></div>
       <blockquote>“The future of technology should be built by the full range of talent it will serve.”</blockquote>

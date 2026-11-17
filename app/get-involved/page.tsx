@@ -20,6 +20,7 @@ export default function GetInvolvedPage() {
         <a className="button buttonGold" href={`mailto:info@projectinterlock.org?subject=${encodeURIComponent(subject + " - Project Interlock")}`}>{cta} <span>→</span></a>
       </article>)}
     </section>
+    <section className="innerSection splitStory" id="reciprocity-involve" aria-labelledby="reciprocity-involve-title"><div><p className="eyebrow blueText">Reciprocity and Community</p><h2 id="reciprocity-involve-title">Reach Forward. Reach Back.</h2></div><div className="storyCopy"><p>Share what you know. Open a door. Help the next generation move forward.</p><p>We welcome interest now from prospective mentors, speakers, and volunteers who can help shape opportunities for the 2027 pilot.</p><a className="textLink darkLink" href="#mentors">Express interest in mentoring or supporting students →</a><a className="textLink darkLink" href="/about#reach-back">Explore our guiding principle →</a></div></section>
     <section className="contactBand">
       <div><p className="eyebrow goldText">Not sure where you fit?</p><h2>Start a conversation.</h2></div>
       <div><p>Tell us a little about yourself and how you would like to connect. We’ll help identify the right next step.</p><a href="mailto:info@projectinterlock.org">info@projectinterlock.org ↗</a></div>
